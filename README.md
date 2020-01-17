@@ -5,7 +5,7 @@ Fixes overlay mounting problems conflicting with magisk (often seen in with /pro
 * Initial release
 
 ## Source Code
-* Module [GitHub](https://github.com/Magisk-Modules-Repo/Overlay_Fix)
+* Module [GitHub](https://github.com/Magisk-Modules-Repo/overlayfix)
 
 ## Support
 [XDA](https://forum.xda-developers.com/android/software-hacking/mods-zackptg5-s-misc-projects-t3881164)
