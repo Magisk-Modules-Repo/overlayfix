@@ -1,5 +1,5 @@
 #!/system/bin/sh
-[ -d data/adb/modules/overlayfix ] || { rm -f $0; exit 0 }
+[ -d /data/adb/modules/overlayfix ] || { rm -f $0; exit 0; }
 (
 # Wait till boot is completed - overlays are mounted at this point
 while [ $(getprop sys.boot_completed) -ne 1 ]; do
