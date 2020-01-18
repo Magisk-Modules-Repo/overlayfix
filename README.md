@@ -1,4 +1,4 @@
-# Overlay Fix
+# Overlay Mount Fix
 Fixes overlay mounting problems conflicting with magisk (often seen in with /product)
 
 ### v1.0 - 1.17.2020
