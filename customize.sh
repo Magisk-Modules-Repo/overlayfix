@@ -1,2 +1,9 @@
 rm -f $NVBASE/service.d/overlay_fix.sh $NVBASE/service.d/india_fix.sh
-install -m 0755 $MODPATH/overlay_fix.sh $NVBASE/service.d/overlay_fix.sh
+if [ "`cat /proc/mounts | grep "^overlay "`" ] && $BOOTMODE; then
+  install -m 0755 $MODPATH/overlay_fix.sh $NVBASE/service.d/overlay_fix.sh
+else
+  rm -rf $MODPATH 2>/dev/null
+  $BOOTMODE || abort "Only flashing in magisk manager supported. Aborting!"
+  ui_print "No overlay mounts detected!"
+  abort "No need for this mod! Aborting!"
+fi

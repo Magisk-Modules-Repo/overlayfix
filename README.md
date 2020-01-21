@@ -1,9 +1,9 @@
 # Overlay Mount Fix
-Fixes overlay mounting problems conflicting with magisk (often seen in with /product)
+Fixes overlay mounting problems conflicting with magisk mount (often seen in with /product)
 
-## Do I need this?
-If you get feedback from this command in terminal, then yes:
-`su -c cat /proc/mounts | grep "^overlay "`
+### v1.1 - 1.20.2020
+* Added detection/abort for overlay mounts - will only install if needed now
+* Flash in Magisk Manager only
 
 ### v1.0 - 1.17.2020
 * Initial release
