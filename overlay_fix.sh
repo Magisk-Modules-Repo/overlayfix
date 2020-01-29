@@ -6,11 +6,9 @@ while [ $(getprop sys.boot_completed) -ne 1 ]; do
   sleep 1
 done
 # Iterate through each overlay mounted after magisk mount
-rm -rf $MODPATH/.upper $MODPATH/.work
 for i in $(cat /proc/mounts | tac | sed -n '\|/sbin/.magisk/block|q;p' | tac | grep "^overlay " | awk '{print $2}'); do
-  unset REPLACE
   # Get mount arguments
-  FLAGS="$(cat /proc/mounts | grep -E "^overlay .*$i" | awk '{print $4}' | sed -e 's|lowerdir.*||' -e 's|ro,|rw,|')"
+  FLAGS="$(cat /proc/mounts | grep -E "^overlay .*$i" | awk '{print $4}' | sed 's|lowerdir.*||')"
   DIRS="$(cat /proc/mounts | grep -E "^overlay .*$i" | awk '{print $4}' | sed 's|.*lowerdir=||')"
   # Unmount existing overlay
   umount -l $i
@@ -19,21 +17,10 @@ for i in $(cat /proc/mounts | tac | sed -n '\|/sbin/.magisk/block|q;p' | tac | g
     umount -l $j
   done
   # Get list of magisk modules to mount
-  for j in $(find $NVBASE/modules/*$i -maxdepth 0 -type d 2>/dev/null); do
-    DIRS="$j:$DIRS"
-    for k in $(find $j -type f -name '.replace' 2>/dev/null); do
-      REPLACE="$(dirname $k) $REPLACE"
-    done
+  for j in $NVBASE/modules/*; do
+    [ -d $j$i ] && DIRS="$j$i:$DIRS"
   done
-  # Remount overlay as rw with all magisk modules included
-  mkdir -p $MODPATH/.upper$i $MODPATH/.work$i
-  mount -t overlay -o $FLAGS\lowerdir=$DIRS,upperdir=$MODPATH/.upper$i,workdir=$MODPATH/.work$i overlay $i
-  # Process magisk replacements since it won't work through magisk
-  for j in $REPLACE; do
-    DEST="/$(echo $REPLACE | cut -d / -f6-)"
-    rm -rf $DEST
-    cp -rf $REPLACE $DEST
-  done
-  mount -o remount,ro $i
+  # Remount overlay with all magisk modules included
+  mount -t overlay -o $FLAGS\lowerdir=$DIRS overlay $i
 done
 )&

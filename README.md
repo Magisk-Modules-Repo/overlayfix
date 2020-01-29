@@ -1,9 +1,6 @@
 # Overlay Mount Fix
 Fixes overlay mounting problems conflicting with magisk mount (often seen in with /product)
 
-### v1.2 - 1.27.2020
-* Rework to work with file/folder removals through magisk
-
 ### v1.1 - 1.20.2020
 * Added detection/abort for overlay mounts - will only install if needed now
 * Flash in Magisk Manager only
