@@ -1,6 +1,6 @@
 id=overlayfix
 name=Overlay Mount Fix
-version=v1.1
-versionCode=4
+version=v2.0
+versionCode=5
 author=Zackptg5
 description=Fixes overlay mounting problems conflicting with magisk (often seen in with /product)
