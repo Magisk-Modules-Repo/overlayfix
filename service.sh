@@ -1,5 +1,5 @@
 #!/system/bin/sh
-MODPATH=/sbin/.magisk/modules/overlayfix
+MODPATH=<moddir>/overlayfix
 overlays="$(cat /proc/mounts | grep "^overlay " | awk '{print $2}' | tr '\n' ' ')"
 dirs="$(cat /proc/mounts | grep "^overlay " | awk '{print $4}' | sed 's|.*lowerdir=||' | cut -d , -f1 | tr '\n' ' ')"
 echo -e "$overlays\n$dirs" > $MODPATH/.overlays

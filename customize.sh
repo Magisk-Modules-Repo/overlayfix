@@ -18,6 +18,11 @@ perm_set() {
   set_perm_recursive $dest $usergroup 0755 0644 $context
 }
 
+moddir="$(magisk --path)/.magisk/modules"
+for i in $MODPATH/service.sh $MODPATH/post-fs-data.sh; do
+  sed -i "s|<moddir>|$moddir|" $i
+done
+cat $MODPATH/service.sh
 overlays="$(cat /proc/mounts | grep "^overlay " | awk '{print $2}' | tr '\n' ' ')"
 dirs="$(cat /proc/mounts | grep "^overlay " | awk '{print $4}' | sed 's|.*lowerdir=||' | cut -d , -f1 | tr '\n' ' ')"
 if [ -z "$overlays" ] && [ -f $NVBASE/modules/$MODID/.overlays ]; then
@@ -51,7 +56,7 @@ if [ "$overlays" ] && $BOOTMODE; then
         mount -t $(echo $loopline | awk '{print $3}') -o $(echo $loopline | awk '{print $4}') $(echo $loopline | awk '{print $1}') $i
       fi
       # Ignore magisk or non-mounted files
-      if [ "$(echo $j | grep -E "$NVBASE/modules|/sbin/.magisk/modules" 2>/dev/null)" ] || ([ "$(readlink -f $j)" == "$i" ] && ! $loopmount); then
+      if [ "$(echo $j | grep -E "$NVBASE/modules|$moddir" 2>/dev/null)" ] || ([ "$(readlink -f $j)" == "$i" ] && ! $loopmount); then
         continue
       fi
       cp -af $j/* $dest

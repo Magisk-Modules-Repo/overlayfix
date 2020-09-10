@@ -2,6 +2,9 @@
 Fixes overlay mounting problems conflicting with magisk mount (often seen in with /product)
 REFLASH THIS MOD AGAIN AFTER UPDATING ROM (such as an OTA or dirty flash)
 
+### v2.2 - 9.9.2020
+* Updated for Android 11
+
 ### v2.1 - 3.26.2020
 * Added support for loop mounts in overlay mount directories (i.e. oneplus reserve.img mount)
 * Bug fixes

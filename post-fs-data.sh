@@ -1,5 +1,5 @@
 #!/system/bin/sh
-MODPATH=/sbin/.magisk/modules/overlayfix
+MODPATH=<moddir>/overlayfix
 overlays="$(head -n1 $MODPATH/.overlays)"
 rm -f $MODPATH/.loops
 exec 2>$MODPATH/pfsdoverlaydebug.log
