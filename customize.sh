@@ -18,8 +18,7 @@ perm_set() {
   set_perm_recursive $dest $usergroup 0755 0644 $context
 }
 
-moddir="$(magisk --path 2>/dev/null)/.magisk/modules"
-[ "$moddir" ] || moddir="/sbin/.magisk/modules"
+[ "$(magisk --path 2>/dev/null)" ] && moddir="$(magisk --path 2>/dev/null)/.magisk/modules" || moddir="/sbin/.magisk/modules"
 for i in $MODPATH/service.sh $MODPATH/post-fs-data.sh; do
   sed -i "s|<moddir>|$moddir|" $i
 done
