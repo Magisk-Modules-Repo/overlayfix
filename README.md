@@ -2,6 +2,9 @@
 Fixes overlay mounting problems conflicting with magisk mount (often seen in with /product)
 REFLASH THIS MOD AGAIN AFTER UPDATING ROM (such as an OTA or dirty flash)
 
+### v2.3 - 9.10.2020
+* Hotfix for v2.2
+
 ### v2.2 - 9.9.2020
 * Updated for Android 11
 

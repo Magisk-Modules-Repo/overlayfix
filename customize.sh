@@ -19,10 +19,6 @@ perm_set() {
 }
 
 [ "$(magisk --path 2>/dev/null)" ] && moddir="$(magisk --path 2>/dev/null)/.magisk/modules" || moddir="/sbin/.magisk/modules"
-for i in $MODPATH/service.sh $MODPATH/post-fs-data.sh; do
-  sed -i "s|<moddir>|$moddir|" $i
-done
-cat $MODPATH/service.sh
 overlays="$(cat /proc/mounts | grep "^overlay " | awk '{print $2}' | tr '\n' ' ')"
 dirs="$(cat /proc/mounts | grep "^overlay " | awk '{print $4}' | sed 's|.*lowerdir=||' | cut -d , -f1 | tr '\n' ' ')"
 if [ -z "$overlays" ] && [ -f $NVBASE/modules/$MODID/.overlays ]; then
