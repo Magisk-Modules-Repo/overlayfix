@@ -1,4 +1,4 @@
-# Overlay Mount Fix
+# Overlay Mount Fix [Deprecated]
 Fixes overlay mounting problems conflicting with magisk mount (often seen in with /product)
 REFLASH THIS MOD AGAIN AFTER UPDATING ROM (such as an OTA or dirty flash)
 
